@@ -8,8 +8,8 @@ Gem::Specification.new 'capistrano-unicorn', Capistrano::Unicorn::VERSION do |sp
   spec.email            = 'mkempe@bitaculous.com'
   spec.homepage         = 'https://bitaculous.github.io/capistrano-unicorn/'
   spec.license          = 'MIT'
-  spec.files            = Dir['{lib,spec}/**/*', 'LICENSE', 'README.md']
-  spec.extra_rdoc_files = ['LICENSE', 'README.md']
+  spec.files            = Dir['{lib,spec}/**/*', 'CHANGELOG.md', 'LICENSE', 'README.md']
+  spec.extra_rdoc_files = ['CHANGELOG.md', 'LICENSE', 'README.md']
 
   spec.required_ruby_version     = '~> 2.2'
   spec.required_rubygems_version = '~> 2.4'
