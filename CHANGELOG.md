@@ -5,3 +5,5 @@
 * [✚] Added specs
 * [➠] Configured RuboCop and Gemnasium
 * [❶] First commit, added common files
+
+[sosedoff/capistrano-unicorn]: https://github.com/tablexi/capistrano3-unicorn "Capistrano3 Unicorn"
