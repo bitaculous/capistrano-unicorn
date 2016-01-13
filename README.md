@@ -1,7 +1,6 @@
 [Capistrano Unicorn]
 ====================
 
-[![Travis CI Status][Travis CI Status]][Travis CI]
 [![Gemnasium Status][Gemnasium Status]][Gemnasium]
 
 **Unicorn specific tasks for Capistrano**
@@ -56,5 +55,3 @@ Capistrano Unicorn is released under the [MIT License (MIT)], see [LICENSE].
 [MIT License (MIT)]: http://opensource.org/licenses/MIT "The MIT License (MIT)"
 [RSpec]: http://rspec.info "Behaviour Driven Development for Ruby"
 [RuboCop]: https://github.com/bbatsov/rubocop "A Ruby static code analyzer, based on the community Ruby style guide."
-[Travis CI]: https://travis-ci.org/bitaculous/capistrano-unicorn "Capistrano Unicorn at Travis CI"
-[Travis CI Status]: https://img.shields.io/travis/bitaculous/capistrano-unicorn.svg?style=flat "Travis CI Status"
