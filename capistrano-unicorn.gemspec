@@ -14,6 +14,8 @@ Gem::Specification.new 'capistrano-unicorn', Capistrano::Unicorn::VERSION do |sp
   spec.required_ruby_version     = '~> 2.2'
   spec.required_rubygems_version = '~> 2.4'
 
+  spec.add_runtime_dependency 'capistrano', '~> 3.4', '>= 3.4.0'
+
   spec.add_development_dependency 'rake',  '~> 10.5', '>= 10.5.0'
   spec.add_development_dependency 'rspec', '~> 3.4',  '>= 3.4.0'
 end
