@@ -1,5 +1,1 @@
-module Capistrano
-  module Unicorn # :nodoc:
-    # ...
-  end
-end
+load File.expand_path('../tasks/unicorn.rake', __FILE__)

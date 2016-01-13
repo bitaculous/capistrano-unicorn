@@ -1,3 +1,0 @@
-RSpec.describe Capistrano::Unicorn do
-  # Your specs goes here...
-end
