@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Capistrano-unicorn by bitaculous</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Capistrano-unicorn</h1>
+        <p>Unicorn specific tasks for Capistrano</p>
+
+        <p class="view"><a href="https://github.com/bitaculous/capistrano-unicorn">View the Project on GitHub <small>bitaculous/capistrano-unicorn</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/bitaculous/capistrano-unicorn/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/bitaculous/capistrano-unicorn/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/bitaculous/capistrano-unicorn">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<ol>
+<li>
+<p>Add Capistrano Unicorn to your Gemfile:</p>
+
+<div class="highlight highlight-source-ruby"><pre>group <span class="pl-c1">:deployment</span>
+  <span class="pl-k">gem</span> <span class="pl-s"><span class="pl-pds">'</span>capistrano-unicorn<span class="pl-pds">'</span></span>, <span class="pl-c1">github:</span> <span class="pl-s"><span class="pl-pds">'</span>bitcoveries/capistrano-unicorn<span class="pl-pds">'</span></span>, <span class="pl-c1">require:</span> <span class="pl-c1">false</span>
+<span class="pl-k">end</span></pre></div>
+</li>
+<li><p>Run <code>bundle</code> to install all dependencies with <a href="http://bundler.io" title="The best way to manage a Ruby application's gems">Bundler</a></p></li>
+</ol>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Add the Capistrano Unicorn to your Capfile:</p>
+
+<div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>capistrano/unicorn<span class="pl-pds">'</span></span></pre></div>
+
+<p>Invoke Unicorn from your <code>config/deploy.rb</code> or <code>config/deploy/&lt;ENVIRONMENT&gt;.rb</code>:</p>
+
+<p>If <code>preload_app:true</code> use:</p>
+
+<div class="highlight highlight-source-ruby"><pre>after <span class="pl-s"><span class="pl-pds">'</span>deploy:publishing<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>deploy:restart<span class="pl-pds">'</span></span>
+namespace <span class="pl-c1">:deploy</span> <span class="pl-k">do</span>
+  task <span class="pl-c1">:restart</span> <span class="pl-k">do</span>
+    invoke <span class="pl-s"><span class="pl-pds">'</span>unicorn:restart<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>If <code>preload_app:true</code> and you need Capistrano to cleanup your <code>*.oldbin</code> PID use:</p>
+
+<div class="highlight highlight-source-ruby"><pre>after <span class="pl-s"><span class="pl-pds">'</span>deploy:publishing<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>deploy:restart<span class="pl-pds">'</span></span>
+namespace <span class="pl-c1">:deploy</span> <span class="pl-k">do</span>
+  task <span class="pl-c1">:restart</span> <span class="pl-k">do</span>
+    invoke <span class="pl-s"><span class="pl-pds">'</span>unicorn:legacy_restart<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<p>Otherwise use:</p>
+
+<div class="highlight highlight-source-ruby"><pre>after <span class="pl-s"><span class="pl-pds">'</span>deploy:publishing<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>deploy:restart<span class="pl-pds">'</span></span>
+namespace <span class="pl-c1">:deploy</span> <span class="pl-k">do</span>
+  task <span class="pl-c1">:restart</span> <span class="pl-k">do</span>
+    invoke <span class="pl-s"><span class="pl-pds">'</span>unicorn:reload<span class="pl-pds">'</span></span>
+  <span class="pl-k">end</span>
+<span class="pl-k">end</span></pre></div>
+
+<blockquote>
+<p>Note that presently you must put the <code>invoke</code> outside any <code>on</code> block since the task handles this for you; otherwise
+you will get an <code>undefined method 'verbosity'</code> error.*</p>
+</blockquote>
+
+<p>Ensure that your <code>unicorn_pid</code> directory has been added Capistrano's <code>linked_dirs</code>. Otherwise Unicorn workers will not
+be properly killed/restarted.</p>
+
+<h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<h3>
+<a id="run-specs-with-rspec" class="anchor" href="#run-specs-with-rspec" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run specs with <a href="http://rspec.info" title="Behaviour Driven Development for Ruby">RSpec</a>
+</h3>
+
+<p>Run <code>rspec</code>.</p>
+
+<p>or via <a href="http://guardgem.org" title="A command line tool to easily handle events on file system modifications.">Guard</a>:</p>
+
+<pre><code>$ guard -g spec
+</code></pre>
+
+<h3>
+<a id="run-rubocop" class="anchor" href="#run-rubocop" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run <a href="https://github.com/bbatsov/rubocop" title="A Ruby static code analyzer, based on the community Ruby style guide.">RuboCop</a>
+</h3>
+
+<p>Run <code>rubocop</code>.</p>
+
+<p>To run all specs and RuboCop altogether, run <code>rake</code>.</p>
+
+<h2>
+<a id="code-status" class="anchor" href="#code-status" aria-hidden="true"><span class="octicon octicon-link"></span></a>Code Status</h2>
+
+<p><a href="https://gemnasium.com/bitaculous/capistrano-unicorn" title="Capistrano Unicorn at Gemnasium"><img src="https://img.shields.io/gemnasium/bitaculous/capistrano-unicorn.svg?style=flat" alt="Gemnasium Status" title="Gemnasium Status"></a></p>
+
+<h2>
+<a id="bug-reports" class="anchor" href="#bug-reports" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bug Reports</h2>
+
+<p>Github Issues are used for managing bug reports and feature requests. If you run into issues, please search the issues
+and submit new problems <a href="https://github.com/bitaculous/capistrano-unicorn/issues" title="Github Issues">here</a>.</p>
+
+<h2>
+<a id="credits" class="anchor" href="#credits" aria-hidden="true"><span class="octicon octicon-link"></span></a>Credits</h2>
+
+<p>Capistrano Unicorn is heavily inspired by <a href="https://github.com/tablexi/capistrano3-unicorn" title="Capistrano3 Unicorn">sosedoff/capistrano-unicorn</a>.</p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Capistrano Unicorn is released under the <a href="http://opensource.org/licenses/MIT" title="The MIT License (MIT)">MIT License (MIT)</a>, see <a href="https://raw.githubusercontent.com/bitaculous/capistrano-unicorn/master/LICENSE" title="License">LICENSE</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/bitaculous">bitaculous</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
