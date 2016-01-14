@@ -21,7 +21,7 @@ Installation
 Usage
 -----
 
-Add the Capistrano Unicorn to your Capfile:
+Add Capistrano Unicorn to your Capfile:
 
 ```ruby
 require 'capistrano/unicorn'
