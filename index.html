@@ -45,7 +45,7 @@
 <h2>
 <a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
 
-<p>Add the Capistrano Unicorn to your Capfile:</p>
+<p>Require Capistrano Unicorn to your Capfile:</p>
 
 <div class="highlight highlight-source-ruby"><pre><span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>capistrano/unicorn<span class="pl-pds">'</span></span></pre></div>
 
@@ -83,7 +83,7 @@ namespace <span class="pl-c1">:deploy</span> <span class="pl-k">do</span>
 you will get an <code>undefined method 'verbosity'</code> error.*</p>
 </blockquote>
 
-<p>Ensure that your <code>unicorn_pid</code> directory has been added Capistrano's <code>linked_dirs</code>. Otherwise Unicorn workers will not
+<p>Ensure that the <code>unicorn_pid</code> directory has been added to <code>linked_dirs</code> setting. Otherwise Unicorn workers will not
 be properly killed/restarted.</p>
 
 <h2>
