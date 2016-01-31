@@ -11,7 +11,7 @@ Gem::Specification.new 'capistrano-unicorn', Capistrano::Unicorn::VERSION do |sp
   spec.files            = Dir['{lib,spec}/**/*', 'CHANGELOG.md', 'LICENSE', 'README.md']
   spec.extra_rdoc_files = ['CHANGELOG.md', 'LICENSE', 'README.md']
 
-  spec.required_ruby_version     = '~> 2.2'
+  spec.required_ruby_version     = '~> 2.1'
   spec.required_rubygems_version = '~> 2.4'
 
   spec.add_runtime_dependency 'capistrano', '~> 3.4', '>= 3.4.0'

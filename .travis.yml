@@ -9,6 +9,7 @@ notifications:
   email:
     - dev@bitaculous.com
 rvm:
+  - 2.1.8
   - 2.2.4
   - 2.3.0
 sudo: false
