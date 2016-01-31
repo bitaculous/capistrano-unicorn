@@ -1,6 +1,7 @@
 1.0.1
 =====
 
+* [➠] Decreased required Ruby version
 * [➠] Updated RuboCop configuration
 
 1.0.0
