@@ -1,3 +1,8 @@
+1.0.1
+=====
+
+* [➠] Updated RuboCop configuration
+
 1.0.0
 =====
 
